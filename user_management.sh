@@ -41,20 +41,50 @@ display_active_users() {
         if [ "$expire_date" != " never" ]; then
             days_left=$(($(date -d "$expire_date" +%s) - $(date +%s)))
             days_left=$((days_left / 86400))
-            usage=$(vnstat -u -i eth0; vnstat -i eth0 --oneline | cut -d\; -f9)
+            usage=$(vnstat -i eth0 --oneline | cut -d\; -f9)
             echo "User: $user, Days left: $days_left, Network usage: $usage"
         fi
     done
 }
 
+# Function to display online users
+display_online_users() {
+    echo "Online Users:"
+    who
+}
+
+# Function to update the script from GitHub
+update_script() {
+    echo "Updating the script from GitHub..."
+    sudo git pull origin main
+    echo "Script updated successfully."
+}
+
+# Function to backup user data
+backup_data() {
+    echo "Backing up user data..."
+    sudo tar -czvf user_backup.tar.gz /home/*
+    echo "User data backed up successfully to user_backup.tar.gz."
+}
+
+# Function to restore user data
+restore_data() {
+    echo "Restoring user data..."
+    sudo tar -xzvf user_backup.tar.gz -C /
+    echo "User data restored successfully."
+}
+
 # Main menu
 while true; do
-    echo "SSH UMS by @farsmd"
-    echo "User Management Script"
+    echo "User Management Script (UMS)"
     echo "1. Add User"
     echo "2. Configure SSH Tunnel"
     echo "3. Display Active Users"
-    echo "4. Exit"
+    echo "4. Display Online Users"
+    echo "5. Update Script"
+    echo "6. Backup Data"
+    echo "7. Restore Data"
+    echo "8. Exit"
     read -p "Choose an option: " choice
 
     case $choice in
@@ -68,6 +98,18 @@ while true; do
             display_active_users
             ;;
         4)
+            display_online_users
+            ;;
+        5)
+            update_script
+            ;;
+        6)
+            backup_data
+            ;;
+        7)
+            restore_data
+            ;;
+        8)
             exit 0
             ;;
         *)
