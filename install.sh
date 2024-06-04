@@ -7,6 +7,7 @@ SCRIPT_URL2="https://raw.githubusercontent.com/farsmd/ssh/main/required.sh"
 curl -O $SCRIPT_URL
 curl -O $SCRIPT_URL2
 chmod +x required.sh
+bash required.sh
 # Make the script executable
 sudo mv app-ums.sh /usr/local/bin/ums
 chmod +x app-ums.sh
