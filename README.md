@@ -7,6 +7,11 @@ SSH User Manager is a script designed to manage SSH users on a Linux server.
 - Remove existing SSH users
 - List all SSH users
 - Change passwords for SSH users
+- Backup and restore user data
+- Log user management activities
+- Customize SSH user settings
+- Monitor SSH login attempts
+
 
 ## Installation
 
