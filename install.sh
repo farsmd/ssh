@@ -10,7 +10,7 @@ chmod +x required.sh
 chmod +x app-ums.sh
 bash required.sh
 # Make the script executable
-sudo mv app-ums.sh /usr/local/bin/ums
-
+echo "alias ums='bash ~/ums/app-ums.sh'" >> ~/.bashrc
+source ~/.bashrc
 
 echo "Installation completed. Use 'ums' to manage users."
